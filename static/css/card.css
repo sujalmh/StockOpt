@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.card {
+    display: flex;
+    justify-content: safe;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    margin-bottom: 20px;
+    width: 300px;
+    height: 450px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    height:50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.image {
+
+    text-align: center;
+}
+
+
+.image img {
+    max-width:400px;
+    width: 280px;
+    height:150px;
+    border-radius: 10px;
+}
+
+.ticker, .price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stock-info {
+    text-align: center;
+    height: 150px;
+    padding: 20px;
+}
+
+.stock-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    
+    font-size: 14px;
+    color: #555;
+}
+
+.additional-info {
+      
+    background-color: antiquewhite;
+    padding: 10px;
+    flex-grow: 1; /* Make these sections flexible to fill remaining space */
+}
+
+.buy-info,
+.risk-info {
+    
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+}
+
+
+body {
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.container {
+    position: relative;
+    height: auto; 
+}
+
+.modal-content {
+    background-color: #ffffff00;
+    padding: 2.5%;
+    height:500px;
+    width: auto;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-content .card{
+    transform: scale(1.2);
+    transition: transform 0.5s linear 0.2s;
+}
+

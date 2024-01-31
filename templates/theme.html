@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Selection</title>
+ <!-- Your custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/try.css') }}">
+
+    <!-- Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body >
+    
+
+        <section>
+            <div class="wave wave1"> </div>
+            <div class="wave wave2"> </div>
+            <div class="wave wave3"> </div>
+            <div class="wave wave4"> </div>
+        
+
+            <div class="navbar">
+                <div class="left-section">
+                    <div class="logo">Stockaroo</div>
+                </div>
+                <div class="center-section">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+    <div class="theme-container ">
+        
+        <h1>Choose Theme Style</h1>
+
+        <a style="text-decoration:none;color:white" href="{{ url_for('theme', theme='cyberpunk') }}" class="theme-box cyberpunk">
+            Cyberpunk
+        </a>
+        <a style="text-decoration:none;color:rgb(0, 0, 0)" href="{{ url_for('theme', theme='minimalistic') }}" class="theme-box minimalistic">
+            Minimalistic
+        </a>
+        <a style="text-decoration:none;color:rgb(255, 255, 255)" href="{{ url_for('theme', theme='artistic') }}" class="theme-box artistic">
+            Artistic
+        </a>
+        <a style="text-decoration:none;color:rgb(255, 255, 255)" href="{{ url_for('theme', theme='space') }}" class="theme-box space">
+            Space
+        </a>
+    </div>
+
+</section>
+</body>
+</html>

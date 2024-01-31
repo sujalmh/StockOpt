@@ -1,0 +1,157 @@
+@import url('https://fonts.cdnfonts.com/css/space-theme');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image:linear-gradient(rgba(31, 29, 29, 0.284), rgba(27, 1, 49, 0.908)), url('https://i.pinimg.com/236x/18/e8/fa/18e8fa1d11f140dfd812a0fb5130efb7.jpg');   
+    background-size: cover;            
+    background-repeat: no-repeat;           
+    background-attachment:fixed; 
+}
+.blur-background {
+    backdrop-filter: blur(50%); /* Adjust the blur intensity as needed */
+    background-color: rgba(85, 128, 168, 0.699); /* Adjust the background color and opacity as needed */
+    transition: backdrop-filter 0.5s ease; /* Add a smooth transition effect */
+}
+
+
+.container {
+    position: relative;
+    height: auto; 
+}
+
+
+.card {    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Space Theme', sans-serif;       
+    font-style: oblique;               
+    display: flex;
+    justify-content: safe;
+    background-image: linear-gradient(rgba(31, 29, 29, 0.284), rgba(27, 1, 49, 0.908)),url('https://i.pinimg.com/236x/cf/95/af/cf95afd802751d6bdb5bbf925928a2fe.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px rgba(5, 228, 5, 0.63);
+    border: 0;
+}
+
+.header {
+    background-color: rgba(13, 85, 219, 0.466);
+    color: white;
+    padding: 10px;
+    height:50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticker, .price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.image {
+    text-align: center;
+}
+
+
+.image img {
+    max-width:400px;
+    width: 280px;
+    height:150px;
+    padding: 20px 20px 0px 20px;
+    border-radius: 10px;
+}
+
+.stock-info {
+    padding: 20px;
+    color: white;
+    height: 150px;
+    text-align: center;
+    text-shadow: 3px 3px 8px #077bff;
+}
+
+
+.stock-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 8px #077bff;
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 8px #077bff;
+    flex-grow: 1;
+}
+
+.buy-info, .risk-info {
+    text-align: center;
+}
+
+.label {
+    font-size: 12px;
+    color: #ffffff;
+    text-shadow: 3px 3px 8px #077bff;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 8px #077bff;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: #ffffff00;
+    padding: 2.5%;
+    height:500px;
+    width: auto;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-content .card{
+    transition: transform 0.5s linear 0.2s;
+    transform: scale(1.2);
+    
+}
+

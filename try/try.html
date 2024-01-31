@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Set background color */
+        }
+        .container {
+            margin-top: 50px; /* Adjust top margin as needed */
+        }
+        form {
+            max-width: 600px; /* Set max-width for the form */
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            border: none;
+            border-bottom: 1px solid #ced4da; /* Add bottom border */
+            margin-bottom: 15px; /* Adjust bottom margin as needed */
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff; /* Button color */
+            color: #fff; /* Text color */
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form action="/generate_portfolio_result" method="post">
+            <div class="form-group">
+                <label for="income">Income:</label>
+                <input type="number" id="income" name="income" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expenditure">Expenditure:</label>
+                <input type="number" id="expenditure" name="expenditure" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="riskAppetite">Risk Appetite:</label>
+                <select id="riskAppetite" name="riskAppetite" class="form-control" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Generate Portfolio</button>
+        </form>
+    </div>
+
+    <!-- Your additional HTML content goes here -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

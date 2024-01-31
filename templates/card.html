@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename=theme_data.get('css_file', 'card.css')) }}"> 
+
+    <style>
+        @media print {
+            .webpage-body{
+                margin: 20px 20px;
+            }
+            .webpage-column {
+                margin-top: 20px;
+                -ms-flex-preferred-size: 0;
+                flex-basis: 0;
+                -webkit-box-flex: 1;
+                -ms-flex-positive: 1;
+                flex-grow: 1;
+                width: 100%;
+                height: 100%;
+                
+            }
+            .webpage-card{
+                margin-top: 10px;
+                margin-bottom: 10px;
+                border: solid 2px #000;
+            }
+        }
+        .animatable {
+            /* initially hide animatable objects */
+            visibility: hidden;
+
+            /* initially pause animatable objects their animations */
+            animation-play-state: paused;
+        }
+        .animated {
+            visibility: visible;
+
+            animation-fill-mode: both;
+            animation-duration: 1s;
+            animation-play-state: running;
+            }
+        .animated.animationDelay {
+            animation-delay: 0.4s;
+            }
+        .animated.animationDelayMed {
+            animation-delay: 1.2s;
+            }
+        .animated.animationDelayLong {
+            animation-delay: 1.6s;
+            }
+        
+        .animated.bounceInRight {
+            animation-name: bounceInRight;
+            }
+        @keyframes bounceInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(2000px);
+            }
+            60% {
+                transform: translateX(-20px);
+            }
+            80% {
+                transform: translateX(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            }
+    </style>
+</head>
+<body >
+    <a href="choose_theme"> <button class="btn btn-primary" style="align-self: flex-start; position: fixed; top: 20px; left: 20px; margin: 10px; background-color: gray;border: 0;padding: 0.5% 0.65%;" >Go Back</button></a>
+
+    <div class="container" >
+        <div class="row">
+            {% for stock in stock_data %}
+            <div class="col-md-4 webpage-column">
+                <div class="card animatable bounceInRight webpage-card" style="margin-top: 10px; margin-bottom: 10px;" onclick="openModal('{{ stock['ticker'] }}', '{{ stock['price'] }}', '{{ stock['stock_name'] }}', '{{ stock['image_url'] }}', '{{ stock['description'] }}', '{{ stock['buy_info']['label'] }}', '{{ stock['buy_info']['value'] }}', '{{ stock['amount']['label'] }}', '{{ stock['amount']['value'] }}')">
+                    <div class="header">
+                        <div class="ticker">{{ stock['ticker'] }}</div>
+                        <div class="price">{{ stock['price'] }}</div>
+                    </div>
+                    <div class="image">
+                        <img src="static/css/{{ stock['image_url'] }}" alt="Stock Image">
+                    </div>
+                    <div class="stock-info">
+                        <div class="stock-name">{{ stock['stock_name'] }}</div>
+                        <div class="description">{{ stock['description'] }}</div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="buy-info">
+                            <div class="label">{{ stock['buy_info']['label'] }}</div>
+                            <div class="value">{{ stock['buy_info']['value'] }}</div>
+                        </div>
+                        <div class="risk-info">
+                            <div class="label">{{ stock['amount']['label'] }}</div>
+                            <div class="value">{{ stock['amount']['value'] }}</div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div id="modal-content"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+       
+
+        jQuery(function($) {
+          
+          // Function which adds the 'animated' class to any '.animatable' in view
+          var doAnimations = function() {
+            
+            // Calc current offset and get all animatables
+            var offset = $(window).scrollTop() + $(window).height(),
+                $animatables = $('.animatable');
+            
+            // Unbind scroll handler if we have no animatables
+            if ($animatables.length == 0) {
+              $(window).off('scroll', doAnimations);
+            }
+            
+            // Check all animatables and animate them if necessary
+                $animatables.each(function(i) {
+               var $animatable = $(this);
+                    if (($animatable.offset().top + $animatable.height() - 20) < offset) {
+                $animatable.removeClass('animatable').addClass('animated');
+                    }
+            });
+        
+            };
+          
+          // Hook doAnimations on scroll, and trigger a scroll
+            $(window).on('scroll', doAnimations);
+          $(window).trigger('scroll');
+        
+        });
+            </script>
+        
+    <script>
+        function openModal(ticker, price, stockName, imageUrl, description, buyLabel, buyValue, riskLabel, riskValue) {
+            document.getElementById("myModal").style.display = "flex";
+
+            var modalContent = `
+            <div class="card">
+                <div class="header">
+                    <div class="ticker">${ticker}</div>
+                    <div class="price">${price}</div>
+                </div>
+                <div class="image">
+                    <img src="static/css/${imageUrl}" alt="Stock Image">
+                </div>
+                <div class="stock-info">
+                    <div class="stock-name">${stockName}</div>
+                    <div class="description">${description}</div>
+                </div>
+                <div class="additional-info">
+                    <div class="buy-info">
+                        <div class="label">${buyLabel}</div>
+                        <div class="value">${buyValue}</div>
+                    </div>
+                    <div class="risk-info">
+                        <div class="label">${riskLabel}</div>
+                        <div class="value">${riskValue}</div>
+                    </div>
+                </div>
+
+            </div>
+            `;
+
+            document.getElementById("modal-content").innerHTML = modalContent;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target === document.getElementById("myModal")) {
+                closeModal();
+            }
+        };
+    </script>
+
+</body>
+</html>

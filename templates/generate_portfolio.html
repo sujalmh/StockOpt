@@ -1,0 +1,162 @@
+<!-- templates/generate_portfolio.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate New Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/try.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{
+            margin-bottom: 5%;
+            background-color: #A7C7E7;
+        }
+        .button{
+            font-size: large;
+            font-weight: 600;
+            padding: 1% 5% 1% 5%;
+        }
+        .container {
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            padding: 2.5%;
+            background-color: #fffffff1;
+            margin-top: 50px; /* Adjust top margin as needed */
+            border-radius: 0.25rem;
+        }
+        form {
+            padding: 0 2%;
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            border: none;
+            border-bottom: 1px solid #ced4da; /* Add bottom border */
+            margin-bottom: 15px; /* Adjust bottom margin as needed */
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .btn{
+            font-size: 125%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            font-weight: 600;
+            padding: 1% 5% 1% 5%;
+            border-radius: 0.25rem;
+            background-color: #00A7DC;
+            border: 0;
+        }
+        .center-button {
+            text-align: center; /* Center the button */
+        }
+        #loader {
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <div class="navbar">
+            <div class="left-section">
+                <div class="logo">Stockaroo</div>
+            </div>
+            <div class="center-section">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mt-5" style="text-align: center;">
+            <h1>Generate New Portfolio</h1>
+        </div>
+        <div class="container">
+            <form action="/generate_portfolio_result" method="post">
+                <div class="form-group row align-items-center justify-content-center">
+                    <div class="col-md-4">
+                        <label for="income"><h4>Income:</h4></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" id="income" name="income" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group row align-items-center justify-content-center">
+                    <div class="col-md-4">
+                        <label for="expenditure"><h4>Expenditure:</h4></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" id="expenditure" name="expenditure" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group row align-items-center justify-content-center">
+                    <div class="col-md-4">
+                        <label for="method"><h4>Optimization Type:</h4></label>
+                    </div>
+                    <div class="col-md-8">
+                        <select id="method" name="method" class="form-control" required>
+                            <option value="risk_only">Minimum Volatility</option>
+                            <option value="risk_return">Maximum Sharpe Ratio</option>
+                        </select>   
+                    </div>
+                </div>
+                <div class="form-group row align-items-center justify-content-center">
+                    <div class="col-auto col-md-4">
+                        <label for="riskAppetite"><h4>Risk Appetite:</h4></label>
+                    </div>
+                    <div class="col-auto col-md-8">
+                        <select id="riskAppetite" name="riskAppetite" class="form-control" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                </div>
+                <div class="center-button mt-5">
+                    <button type="submit" class="btn btn-primary button">Generate Portfolio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="loader">
+        <div class="large">
+            <div class="medium">
+                <div class="small">
+                    <div class="dot">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>LOADING</h1>
+    </div>    
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Attach a submit event handler to the form
+            $('form').submit(function () {
+                // Show the loading spinner when the form is submitted
+                $('#main-content').hide();
+                $('#loader').show();
+            });
+        });
+    </script>
+
+</body>
+</html>

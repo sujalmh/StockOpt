@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename=theme_data.get('css_file', 'card.css')) }}"> 
+
+    <style>
+        .animatable {
+            /* initially hide animatable objects */
+            visibility: hidden;
+
+            /* initially pause animatable objects their animations */
+            animation-play-state: paused;
+            }
+        .animated {
+            visibility: visible;
+
+            animation-fill-mode: both;
+            animation-duration: 1s;
+            animation-play-state: running;
+            }
+        .animated.animationDelay {
+            animation-delay: 0.4s;
+            }
+        .animated.animationDelayMed {
+            animation-delay: 1.2s;
+            }
+        .animated.animationDelayLong {
+            animation-delay: 1.6s;
+            }
+        
+        .animated.bounceInRight {
+            animation-name: bounceInRight;
+            }
+        @keyframes bounceInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(2000px);
+            }
+            60% {
+                transform: translateX(-20px);
+            }
+            80% {
+                transform: translateX(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            }
+    </style>
+
+    
+</head>
+<body class="blur-background">
+
+    <div class="container">
+        <div class="row">
+            {% for stock in stock_data %}
+            <div class="col-md-4">
+                <div class="card animatable bounceInRight" onclick="openModal('{{ stock['ticker'] }}', '{{ stock['price'] }}', '{{ stock['stock_name'] }}', '{{ stock['image_url'] }}', '{{ stock['description'] }}', '{{ stock['buy_info']['label'] }}', '{{ stock['buy_info']['value'] }}', '{{ stock['risk_info']['label'] }}', '{{ stock['risk_info']['value'] }}')">
+
+                
+                    <!-- Render stock information dynamically -->
+                    <div class="header">
+                        <div class="ticker">{{ stock['ticker'] }}</div>
+                        <div class="price">{{ stock['price'] }}</div>
+                    </div>
+                    <div class="image">
+                        <img src="{{ stock['image_url'] }}" alt="Stock Image">
+                    </div>
+                    <div class="stock-info">
+                        <div class="stock-name">{{ stock['stock_name'] }}</div>
+                        <div class="description">{{ stock['description'] }}</div>
+                    </div>
+                    <div class="additional-info">
+                        <div class="buy-info">
+                            <div class="label">{{ stock['buy_info']['label'] }}</div>
+                            <div class="value">{{ stock['buy_info']['value'] }}</div>
+                        </div>
+                        <div class="risk-info">
+                            <div class="label">{{ stock['risk_info']['label'] }}</div>
+                            <div class="value">{{ stock['risk_info']['value'] }}</div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <!-- Your modal content goes here -->
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+       
+
+jQuery(function($) {
+  
+  // Function which adds the 'animated' class to any '.animatable' in view
+  var doAnimations = function() {
+    
+    // Calc current offset and get all animatables
+    var offset = $(window).scrollTop() + $(window).height(),
+        $animatables = $('.animatable');
+    
+    // Unbind scroll handler if we have no animatables
+    if ($animatables.length == 0) {
+      $(window).off('scroll', doAnimations);
+    }
+    
+    // Check all animatables and animate them if necessary
+		$animatables.each(function(i) {
+       var $animatable = $(this);
+			if (($animatable.offset().top + $animatable.height() - 20) < offset) {
+        $animatable.removeClass('animatable').addClass('animated');
+			}
+    });
+
+	};
+  
+  // Hook doAnimations on scroll, and trigger a scroll
+	$(window).on('scroll', doAnimations);
+  $(window).trigger('scroll');
+
+});
+    </script>
+    <script>
+        function openModal(ticker, price, stockName, imageUrl, description, buyLabel, buyValue, riskLabel, riskValue) {
+            document.getElementById("myModal").style.display = "flex";
+
+            var modalContent = `
+            <div class="card">
+                <div class="header">
+                    <div class="ticker">${ticker}</div>
+                    <div class="price">${price}</div>
+                </div>
+                <div class="image">
+                    <img src="${imageUrl}" alt="Stock Image">
+                </div>
+                <div class="stock-info">
+                    <div class="stock-name">${stockName}</div>
+                    <div class="description">${description}</div>
+                </div>
+                <div class="additional-info">
+                    <div class="buy-info">
+                        <div class="label">${buyLabel}</div>
+                        <div class="value">${buyValue}</div>
+                    </div>
+                    <div class="risk-info">
+                        <div class="label">${riskLabel}</div>
+                        <div class="value">${riskValue}</div>
+                    </div>
+                </div>
+
+            </div>
+            `;
+
+            document.getElementById("modal-content").innerHTML = modalContent;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside the modal content
+        window.onclick = function(event) {
+            if (event.target === document.getElementById("myModal")) {
+                closeModal();
+            }
+        };
+    </script>
+
+
+</body>
+</html>

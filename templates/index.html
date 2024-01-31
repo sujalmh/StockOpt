@@ -1,0 +1,98 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Optimization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/try.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{
+            background-color: #A7C7E7;
+        }
+        #title{
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            padding: 2.5%;
+            background-color: #fffffff1;
+            margin-top: 50px; /* Adjust top margin as needed */
+        }
+        .card{
+            text-align: center;
+            margin-top: 5%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+        }
+        .btn{
+            font-size: 125%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            font-weight: 600;
+            padding: 2.5% 5% 2.5% 5%;
+            border-radius: 0.25rem;
+            background-color: #00A7DC;
+            border: 0;
+        }
+        .container{
+            border-radius: 0.25rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="left-section">
+            <div class="logo">Stockaroo</div>
+        </div>
+        <div class="center-section">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container mt-5" id="title">
+        <h1 class="text-center">Portfolio Optimization</h1>
+    </div>
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">Generate New Portfolio</h3>
+                        <p class="card-text" style="text-align: justify;">Click the "Generate New Portfolio" button to kickstart your investment journey. Create a diversified portfolio tailored to your financial goals and risk tolerance. Whether you're a novice or seasoned investor, this feature provides a fresh perspective on potential investment opportunities.                        </p>
+                        <div class="d-flex flex-column align-items-center">
+                            <!-- Centered items here -->
+                            <form action="{{ url_for('generate_portfolio') }}" method="get" style="width: 100%;">
+                                <button type="submit" class="btn btn-primary mt-3" >Generate New Portfolio</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title">Optimize Existing Portfolio</h3>
+                        <p class="card-text" style="text-align: justify;">Optimize your existing portfolio with precision and efficiency by clicking the "Optimize Portfolio" button. Fine-tune your investments based on market conditions, risk appetite, and personalized views. This tool harnesses advanced algorithms to enhance your portfolio's performance and align it with your financial objectives.                        </p>
+                        <div class="d-flex flex-column align-items-center">
+                            <!-- Centered items here -->
+                            <form action="{{ url_for('optimize_portfolio') }}" method="get" style="width: 100%;">
+                                <button type="submit" class="btn btn-primary mt-3">Optimize Existing Portfolio</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+        
+</body>
+</html>

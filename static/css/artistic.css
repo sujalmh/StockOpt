@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    background-image:linear-gradient(rgba(255, 255, 255, 0.858), rgba(255, 204, 122, 0.466)), url('ar1.png');
+    background-size: cover;            
+    background-repeat: no-repeat;           
+    background-attachment: fixed;
+}
+
+.container {
+    position: relative;
+    margin: auto; 
+}
+
+.card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: serif;
+    display: flex;
+    justify-content: safe;
+    background-image: linear-gradient(rgba(187, 63, 6, 0.237), rgba(63, 39, 1, 0.637)),url('ar2.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 450px;
+    border-radius: 0.25rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 0;
+}
+
+.header {
+    background-color: rgba(10, 5, 79, 0.804);
+    color: white;
+    padding: 10px;
+    height:50px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticker, .price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.image {
+    text-align: center;
+}
+
+
+.image img {
+    max-width:400px;
+    width: 280px;
+    height:150px;
+    padding: 20px 20px 0px 20px;
+    border-radius: 10px;
+}
+
+.stock-info {
+    height: 150px;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    text-shadow: 1px 1px #000000bd;
+    text-align: center;
+}
+
+
+.stock-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    flex-grow: 1; 
+}
+
+.buy-info, .risk-info {
+    text-align: center;
+}
+
+.label {
+    font-size: 12px;
+    color: #ffffff;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: #ffffff00;
+    padding: 2.5%;
+    height:500px;
+    width: auto;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-content .card{
+    transition: transform 0.5s linear 0.2s;
+    transform: scale(1.2);
+    
+}
+

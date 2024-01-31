@@ -1,0 +1,195 @@
+<!-- templates/optimize_portfolio.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimize Existing Portfolio</title>
+
+    <script>
+        function updateSliderValue(sliderId, displayId) {
+            var slider = document.getElementById(sliderId);
+            var display = document.getElementById(displayId);
+            display.textContent = slider.value + "%";
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/try.css') }}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{
+            background-color: #A7C7E7;
+            margin-bottom: 5%;
+        }
+        .table{
+            border: 0 0 0 0;
+        }
+        .container{
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            background-color: #fffffff1;
+            border-radius: 0.25rem;
+            padding: 2.5%;
+            
+        }
+        #loader {
+            display: none;
+        }
+        .btn-primary{
+            font-size: 125%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            font-weight: 600;
+            padding: 1% 5% 1% 5%;
+            border-radius: 0.25rem;
+            background-color: #00A7DC;
+            border: 0;
+        }
+        .btn-success{
+            font-size: 125%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+            font-weight: 600;
+            padding: 1% 5% 1% 5%;
+            border-radius: 0.25rem;
+            background-color: #4FBF85;
+            border: 0;
+        }
+        .thead{
+            background-color: #daf3fb;
+        }
+    </style>
+</head>
+<body class="mb-4">
+    <div id="main-content">
+        <div class="navbar">
+            <div class="left-section">
+                <div class="logo">Stockaroo</div>
+            </div>
+            <div class="center-section">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mt-5 text-center" style="text-align: center;">
+            <h1>Optimize Existing Portfolio</h1>
+        </div>
+
+        <div class="container mt-4 text-center">
+            <form action="/add_stock" method="POST">
+                <caption class="">
+                    <h2 class="mb-3">Add Stock</h2>
+                </caption>
+                <table class="table">
+                    <thead class="thead">
+                        <th>Stock Ticker</th>
+                        <th>View</th>
+                        <th>Confidence</th>
+                    </thead>
+                    <tr>
+                        <td> 
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="stock_ticker" placeholder="Enter Stock Ticker" required>
+                            </div>
+                        </td>
+                        <td> 
+                            <div class="form-group">
+                                <input class="form-control" type="number" name="view" placeholder="Enter View" step="0.01" required>                            
+                            </div>    
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input class="form-control" type="range" id="confidence" name="confidence" min="0" max="100" step="5" required
+                                    onchange="updateSliderValue('confidence', 'confidenceValue')"><span>&nbsp</span><span
+                                    id="confidenceValue">50%</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <button class="btn btn-primary button" type="submit">Add</button>
+            </form>
+        </div>
+        <br>
+
+        <div class="container text-center">
+            <h2 class="mb-3">Stock Data</h2>
+            <table class="table table-striped">
+                <thead class="thead">
+                    <th>Stock Ticker</th>
+                    <th>View</th>
+                    <th>Confidence</th>
+                    <th>Action</th>
+                </thead>
+                {% for stock, data in stock_data.items() %}
+                <tr>
+                    <td>{{ stock | upper() }}</td>
+                    <td>{{ data.view }}</td>
+                    <td>{{ data.confidence*100 }} %</td>
+                    <td><a href="/remove_stock/{{ stock }}">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <div class="container text-center">
+            <form action="/optimize_portfolio_result" method="POST">
+                <div class="row form-group justify-content-center">
+                    <div class="col-md-4">
+                        <label for="total_portfolio_value"><h3>Total Portfolio Value:</h3></label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" type="number" id="total_portfolio_value" 
+                        name="total_portfolio_value" step="1" required><br>  
+                    </div>
+                </div>
+                <div class="row form-group justify-content-center" style="margin-top: -2px;">
+                    <div class="col-md-4">
+                        <label for="method"><h3>Optimization Type:</h3></label>
+                    </div>
+                    <div class="col-md-8">
+                        <select id="method" name="method" class="form-control" required>
+                            <option value="risk_only">Minimum Volatility</option>
+                            <option value="risk_return">Maximum Sharpe Ratio</option>
+                        </select>
+                    </div>
+                </div>
+                
+
+                <button type="submit" class="btn btn-success button mt-2">Optimize</button>
+            </form>
+        </div>
+    </div>
+
+ 
+    <div id="loader">
+        <div class="large">
+            <div class="medium">
+                <div class="small">
+                    <div class="dot">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>LOADING</h1>
+    </div>    
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Attach a submit event handler to the form
+            $('form').submit(function () {
+                // Show the loading spinner when the form is submitted
+                $('#main-content').hide();
+                $('#loader').show();
+            });
+        });
+    </script>
+
+
+</body>
+</html>

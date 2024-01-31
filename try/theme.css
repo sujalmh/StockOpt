@@ -1,0 +1,260 @@
+/* theme.css */
+
+body {
+    
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+   
+}
+
+.theme-container { 
+    background-color: #3586ff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+   
+}
+
+.theme-box {
+    width: 225px;
+    height: 375px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+
+    transform-style: preserve-3d;
+    transition: transform 0.75s ease-in-out;
+}
+
+.cyberpunk {
+    background-image:url('cyberf.jpg');
+    background-size: 130%; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-color: #ea00ff;
+}
+
+.minimalistic {
+    background-image:url('https://i.pinimg.com/736x/e6/d1/86/e6d18646eeca1961570ee0057a880684.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+   
+}
+
+.artistic {
+    background-image:url('artf.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+   
+}
+.space {
+    background-image:url('https://wallpaperaccess.com/full/1385619.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+}
+
+.theme-box:hover {
+    transform: scale(1.2) rotateY(180deg);
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+    }
+}
+
+/* Define different background images for each theme */
+.theme-box.cyberpunk:hover::after {
+    background-image: url('cyber.jpg');
+}
+
+.theme-box.minimalistic:hover::after {
+    background-image: url('mini.jpg');
+}
+
+.theme-box.artistic:hover::after {
+    background-image: url('art.jpg');
+}
+
+.theme-box.space:hover::after {
+    background-image: url('space.jpg');
+}
+
+/* 
+.animatable {
+    
+    visibility: hidden;
+
+    
+    animation-play-state: paused;
+    }
+.animated {
+    visibility: visible;
+
+    animation-fill-mode: both;
+    animation-duration: 1s;
+    animation-play-state: running;
+    }
+.animated.animationDelay {
+    animation-delay: 0.4s;
+    }
+.animated.animationDelayMed {
+    animation-delay: 1.2s;
+    }
+.animated.animationDelayLong {
+    animation-delay: 1.6s;
+    }
+
+.animated.bounceIn {
+        animation-name: bounceIn;
+        }
+.animated.bounceInRight {
+        animation-name: bounceInRight;
+        }
+.animated.bounceInLeft {
+        animation-name: bounceInLeft;
+        }
+@keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        }
+
+@keyframes bounceInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-2000px);
+        }
+        60% {
+            transform: translateX(20px);
+        }
+        80% {
+            transform: translateX(-5px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        }
+
+@keyframes bounceInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(2000px);
+    }
+    60% {
+        transform: translateX(-20px);
+    }
+    80% {
+        transform: translateX(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+ */
+
+section
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #3586ff;
+}
+section .wave
+{
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url('wave.png');
+    background-size: 1000px 120px;
+}
+section .wave.wave1
+{
+    animation: animate 30s linear infinite;
+    z-index: 1000;
+    opacity: 1;
+    animation-delay: 0s;
+    bottom: 0;
+}
+section .wave.wave2
+{
+    animation: animate2 15s linear infinite;
+    z-index: 999;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 10px;
+}
+section .wave.wave3
+{
+    animation: animate2 15s linear infinite;
+    z-index: 998;
+    opacity: 0.25;
+    animation-delay: -2s;
+    bottom: 15px;
+}
+section .wave.wave4
+{
+    animation: animate2 15s linear infinite;
+    z-index: 997;
+    opacity: 0.7;
+    animation-delay: -1s;
+    bottom: 20px;
+}
+@keyframes animate
+{
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x: 1000px;
+    }
+}
+@keyframes animate2
+{
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x:1000px;
+    }
+}

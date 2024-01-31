@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image:linear-gradient(rgb(0, 0, 0), rgba(105, 4, 88, 0.363)), url('cb1.png');   
+    background-size:  cover;
+            
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.blur-background {
+    backdrop-filter: blur(50%); /* Adjust the blur intensity as needed */
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the background color and opacity as needed */
+    transition: backdrop-filter 0.5s ease; /* Add a smooth transition effect */
+}
+
+.container {
+    
+
+    position: relative;
+    margin: auto; 
+}
+
+
+.card {
+    font-family: 'Orbitron', sans-serif;
+    display: flex;    
+    justify-content: safe;
+    align-items:safe;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(44, 0, 44, 0.5)), url('cyberpunk1.png');
+    width: 300px;
+    height: 450px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px rgba(165, 8, 147, 0.881);
+    border: 0;
+}
+
+
+.header {
+    background-color: rgba(225, 16, 127, 0.48);
+    color: white;
+    padding: 10px;
+    height:50px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.ticker, .price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.image {
+    text-align: center;
+}
+
+.image img {
+    width: 280px;
+    height:180px;
+    padding: 20px 20px 0px 20px;
+    border-radius: 10px;
+}
+
+.stock-info {
+    padding: 20px;
+    color: white;
+    text-align: center;
+    height: 150px;
+    text-shadow: 3px 3px 8px #39FF14;
+}
+
+
+.stock-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 8px #39FF14;
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 8px #39FF14;
+    flex-grow: 1;
+}
+
+.buy-info, .risk-info {
+    text-align: center;
+}
+
+.label {
+    font-size: 12px;
+    color: #ffffff;
+    text-shadow: 3px 3px 8px #39FF14;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 8px #39FF14;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: #ffffff00;
+    padding: 2.5%;
+    height:500px;
+    width: auto;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-content .card{
+    transition: transform 0.5s linear 0.2s;
+    transform: scale(1.2);
+    
+}
+

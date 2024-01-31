@@ -1,0 +1,62 @@
+body {
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 20px; /* Adjust the gap at the top as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(54, 54, 54, 0.8); /* Gray color with transparency */
+    padding: 20px; /* Adjust padding as needed */
+    text-align: center;
+    border-radius: 0.25rem; /* Add rounded edges */
+    z-index: 1000; /* Ensure the navbar stays on top of other elements */
+    width: 85%; /* Adjust width as needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the content */
+}
+
+.left-section {
+    text-align: left;
+}
+
+.logo {
+    padding-left: 50%;
+    font-size: 24px; /* Adjust the font size as needed */
+    color: white;
+    font-weight: bold;
+}
+.center-section{
+    padding-right: 4%;
+}
+.center-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.center-section li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.center-section a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5; /* Adjust line height for better vertical alignment */
+    transition: color 0.3s ease;
+}
+
+.center-section a:hover {
+    color: #66ccff; /* Change the color on hover */
+    text-decoration: none;
+}
+
+/* Add styling to the rest of your page content as needed */
